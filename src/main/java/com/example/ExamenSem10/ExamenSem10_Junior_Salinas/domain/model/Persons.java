@@ -3,38 +3,38 @@ package com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
-
+@Getter
+@Setter
 public class Persons {
 
-    @Getter
-    @Setter
+
     private Long id;
 
-    @Getter @Setter
+
     private String nombre;
 
-    @Getter @Setter
+
     private String apellidos;
 
-    @Getter @Setter
+
     private String direccion;
 
-    @Getter @Setter
+
     private String email;
 
-    @Getter @Setter
+
     private String telefono;
 
-    @Getter @Setter
+
     private Integer estado;
 
-    @Getter @Setter
-    private Date fecha_crea;
 
-    @Getter @Setter
-    private Date fecha_mod;
+    private Date fechaCrea;
 
-    public Persons(Long id, String nombre, String apellidos, String direccion, String email, String telefono, Integer estado, Date fecha_crea, Date fecha_mod) {
+
+    private Date fechaMod;
+
+    public Persons(Long id, String nombre, String apellidos, String direccion, String email, String telefono, Integer estado, Date fechaCrea, Date fechaMod) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -42,7 +42,7 @@ public class Persons {
         this.email = email;
         this.telefono = telefono;
         this.estado = estado;
-        this.fecha_crea = fecha_crea;
-        this.fecha_mod = fecha_mod;
+        this.fechaCrea = fechaCrea;
+        this.fechaMod = fechaMod;
     }
 }

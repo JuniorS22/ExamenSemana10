@@ -20,14 +20,8 @@ public class PersonsJpaRepositoryAdapter implements PersonsRepositoryPort {
 
     @Override
     public List<Persons> findAll() {
-        List<PersonsEntity> perspmsEntity = personsJpaRepository.findAll();
-        List<Persons> persons = new ArrayList<>();
-        perspmsEntity.forEach(rpersons->{
-            Persons persons1=new Persons(rpersons.getId(), rpersons.getNombre(), rpersons.getApellidos(),rpersons.getDireccion(),rpersons.getEmail(),rpersons.getTelefono(),rpersons.getEstado(),rpersons.getFechaCrea(),rpersons.getFechaMod());
-            persons.add(persons1);
 
-        });
-        return persons;
+        return personsJpaRepository.findByEstado(1);
     }
 
     @Override
@@ -52,7 +46,16 @@ public class PersonsJpaRepositoryAdapter implements PersonsRepositoryPort {
     @Override
     public void delete(Long id) {
 
-        personsJpaRepository.deleteById(id);
+        Optional<Persons> personExistente = findById(id);
 
+        if (personExistente.isPresent()){
+
+            PersonsEntity personEntity = PersonsEntity.fromDomainModel(personExistente.get());
+
+            if (personEntity.getEstado() == 1){
+                personEntity.setEstado(0);
+                personsJpaRepository.save(personEntity);
+            }
+        }
     }
 }

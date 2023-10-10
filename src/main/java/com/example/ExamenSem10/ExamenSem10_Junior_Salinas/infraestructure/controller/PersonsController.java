@@ -41,8 +41,8 @@ public class PersonsController {
         return new ResponseEntity<>(actualizarPersons, HttpStatus.CREATED);
     }
     @DeleteMapping("/{personsId}")
-    public ResponseEntity<String> deletePersons(@PathVariable Long personsId){
+    public void deletePersons(@PathVariable Long personsId){
         personsService.eliminar(personsId);
-        return new ResponseEntity<>("Persona eliminado con exito", HttpStatus.OK);
+
     }
 }

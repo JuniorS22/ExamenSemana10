@@ -16,8 +16,8 @@ public class ApplicationConfig {
     @Bean
     public PersonsService personsService(PersonsRepositoryPort personsRepositoryPort){
         return new PersonsService(new PersonsUseCaseImpl(personsRepositoryPort));
-
     }
+
     @Bean
     public PersonsRepositoryPort personsRepositoryPort(PersonsJpaRepositoryAdapter personsJpaRepositoryAdapter){
         return personsJpaRepositoryAdapter;
@@ -26,8 +26,8 @@ public class ApplicationConfig {
     @Bean
     public UsersService usersService(UsersRepositoryPort usersRepositoryPort){
         return new UsersService(new UsersUseCaseImpl(usersRepositoryPort));
-
     }
+
     @Bean
     public UsersRepositoryPort usersRepositoryPort(UsersJpaRepositoryAdapter usersJpaRepositoryAdapter){
         return usersJpaRepositoryAdapter;

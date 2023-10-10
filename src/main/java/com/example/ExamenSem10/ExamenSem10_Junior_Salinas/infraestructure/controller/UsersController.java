@@ -44,8 +44,8 @@ public class UsersController {
         return new ResponseEntity<>(actualizarUsers, HttpStatus.CREATED);
     }
     @DeleteMapping("/{usersId}")
-    public ResponseEntity<String> deletePersons(@PathVariable Long usersId){
+    public void  deletePersons(@PathVariable Long usersId){
         usersService.eliminar(usersId);
-        return new ResponseEntity<>("Usuario eliminado con exito", HttpStatus.OK);
+
     }
 }

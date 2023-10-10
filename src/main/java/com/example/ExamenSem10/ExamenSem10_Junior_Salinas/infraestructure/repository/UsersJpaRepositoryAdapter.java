@@ -1,7 +1,9 @@
 package com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.repository;
 
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Persons;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Users;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.ports.out.UsersRepositoryPort;
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.PersonsEntity;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.UsersEntity;
 import org.springframework.stereotype.Component;
 
@@ -21,13 +23,15 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
 
     @Override
     public List<Users> findAll() {
-        List<UsersEntity> usersEntity = usersJpaRepository.findAll();
+        //return usersJpaRepository.findByEstado(1);
+        List<UsersEntity> usersEntities = usersJpaRepository.findAll();
+
         List<Users> users = new ArrayList<>();
-        usersEntity.forEach(users1->{
-            Users user=new Users(users1.getId(), users1.getUsuario(), users1.getPaswoord(),users1.getEstado(),users1.getFechaCrea(),users1.getFechaMod(),users1.getPersons().toDomainModel());
 
-
+        usersEntities.forEach(user -> {
+            users.add(user.toDomainModel());
         });
+
         return users;
     }
 
@@ -52,6 +56,18 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
 
     @Override
     public void delete(Long id) {
-        usersJpaRepository.deleteById(id);
+
+        Optional<Users> usersExistente = findById(id);
+
+        if (usersExistente.isPresent()){
+
+            UsersEntity usersEntity = UsersEntity.fromDomainModel(usersExistente.get());
+
+            if (usersEntity.getEstado() == 1){
+                usersEntity.setEstado(0);
+                usersJpaRepository.save(usersEntity);
+            }
+        }
+
     }
 }

@@ -58,8 +58,8 @@ public class PersonsEntity {
                 persons.getEmail(),
                 persons.getTelefono(),
                 persons.getEstado(),
-                persons.getFecha_crea(),
-                persons.getFecha_mod());
+                persons.getFechaCrea(),
+                persons.getFechaMod());
     }
     public Persons toDomainModel(){
         return new Persons(id,nombre,apellidos,direccion,email,telefono,estado,fechaCrea,fechaMod);

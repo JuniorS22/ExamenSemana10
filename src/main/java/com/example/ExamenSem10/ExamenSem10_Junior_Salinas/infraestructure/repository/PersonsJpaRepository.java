@@ -1,5 +1,6 @@
 package com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.repository;
 
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Persons;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.PersonsEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,5 @@ import java.util.List;
 @Repository
 public interface PersonsJpaRepository extends JpaRepository<PersonsEntity,Long> {
 
-    List<PersonsEntity> findByEstado(int estado);
+    List<Persons> findByEstado(int estado);
 }
