@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -47,5 +48,10 @@ public class UsersController {
     public void  deletePersons(@PathVariable Long usersId){
         usersService.eliminar(usersId);
 
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody(required = true) Map<String, String> requestMap){
+        return usersService.login(requestMap);
     }
 }

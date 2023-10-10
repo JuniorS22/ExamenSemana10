@@ -4,6 +4,7 @@ import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Users;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.ports.in.UsersUseCase;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class UsersService implements UsersUseCase {
@@ -37,5 +38,10 @@ public class UsersService implements UsersUseCase {
     @Override
     public void eliminar(Long id) {
         usersUseCase.eliminar(id);
+    }
+
+    @Override
+    public String login(Map<String, String> requestMap) {
+        return usersUseCase.login(requestMap);
     }
 }

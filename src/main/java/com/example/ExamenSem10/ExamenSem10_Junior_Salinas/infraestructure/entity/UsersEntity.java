@@ -40,13 +40,14 @@ public class UsersEntity {
     @Column(name = "fecha_mod")
     private Date fechaMod;
 
+    private String role;
+
 
 
     public UsersEntity() {
     }
 
-
-    public UsersEntity(Long id, String usuario, String paswoord, Integer estado, PersonsEntity persons, Date fechaCrea, Date fechaMod) {
+    public UsersEntity(Long id, String usuario, String paswoord, Integer estado, PersonsEntity persons, Date fechaCrea, Date fechaMod, String role) {
         this.id = id;
         this.usuario = usuario;
         this.paswoord = paswoord;
@@ -54,6 +55,7 @@ public class UsersEntity {
         this.persons = persons;
         this.fechaCrea = fechaCrea;
         this.fechaMod = fechaMod;
+        this.role = role;
     }
 
     public static UsersEntity fromDomainModel(Users users){
@@ -64,9 +66,10 @@ public class UsersEntity {
                 PersonsEntity.fromDomainModel(users.getPersons()
                 ),
                 users.getFechaCrea(),
-                users.getFechaMod());
+                users.getFechaMod(),
+                users.getRole());
     }
     public Users toDomainModel(){
-        return new Users(id,usuario,paswoord,estado,persons.toDomainModel(),fechaCrea,fechaMod);
+        return new Users(id,usuario,paswoord,estado,persons.toDomainModel(),fechaCrea,fechaMod,role);
     }
 }

@@ -5,6 +5,7 @@ import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.ports.in.UsersU
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.ports.out.UsersRepositoryPort;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class UsersUseCaseImpl implements UsersUseCase {
@@ -38,5 +39,9 @@ public class UsersUseCaseImpl implements UsersUseCase {
     @Override
     public void eliminar(Long id) {
         usersRepositoryPort.delete(id);
+    }
+    @Override
+    public String login(Map<String, String> requestMap) {
+        return usersRepositoryPort.login(requestMap);
     }
 }

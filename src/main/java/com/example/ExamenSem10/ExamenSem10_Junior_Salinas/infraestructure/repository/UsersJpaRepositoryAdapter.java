@@ -1,14 +1,19 @@
 package com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.repository;
 
-import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Persons;
+
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model.Users;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.ports.out.UsersRepositoryPort;
-import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.PersonsEntity;
 import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.UsersEntity;
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.security.CustomerDetailService;
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.security.jwt.JwtUtil;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -16,8 +21,15 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
 
     private final UsersJpaRepository usersJpaRepository;
 
-    public UsersJpaRepositoryAdapter(UsersJpaRepository usersJpaRepository) {
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+    private final CustomerDetailService customerDetailService;
+
+    public UsersJpaRepositoryAdapter(UsersJpaRepository usersJpaRepository, AuthenticationManager authenticationManager, JwtUtil jwtUtil, CustomerDetailService customerDetailService) {
         this.usersJpaRepository = usersJpaRepository;
+        this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+        this.customerDetailService = customerDetailService;
     }
 
 
@@ -69,5 +81,25 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
             }
         }
 
+    }
+
+    @Override
+    public String login(Map<String, String> requestMap) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(requestMap.get("usuario"), requestMap.get("password")));
+            if(authentication.isAuthenticated()){
+                String token_generado = jwtUtil.generateToken(
+                        customerDetailService.getUserDetail().getUsuario(),
+                        customerDetailService.getUserDetail().getRole()
+                );
+                return token_generado;
+            }
+
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
     }
 }

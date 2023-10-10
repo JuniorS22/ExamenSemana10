@@ -30,7 +30,9 @@ public class Users {
 
     private Persons persons;
 
-    public Users(Long id, String usuario, String paswoord, Integer estado,Persons persons, Date fechaCrea, Date fechaMod ) {
+    private String role;
+
+    public Users(Long id, String usuario, String paswoord, Integer estado,Persons persons, Date fechaCrea, Date fechaMod, String role ) {
         this.id = id;
         this.usuario = usuario;
         this.paswoord = paswoord;
@@ -38,6 +40,7 @@ public class Users {
         this.persons = persons;
         this.fechaCrea = fechaCrea;
         this.fechaMod = fechaMod;
+        this.role = role;
 
     }
 }

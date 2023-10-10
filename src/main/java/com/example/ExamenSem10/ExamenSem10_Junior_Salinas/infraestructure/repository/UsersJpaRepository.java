@@ -12,4 +12,6 @@ import java.util.List;
 public interface UsersJpaRepository extends JpaRepository<UsersEntity,Long> {
 
     List<Users> findByEstado(int estado);
+
+    UsersEntity findByUsuario(String usuario);
 }
