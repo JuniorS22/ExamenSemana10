@@ -35,8 +35,8 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
 
     @Override
     public List<Users> findAll() {
-        //return usersJpaRepository.findByEstado(1);
-        List<UsersEntity> usersEntities = usersJpaRepository.findAll();
+        return usersJpaRepository.findByEstado(1);
+        /*List<UsersEntity> usersEntities = usersJpaRepository.findAll();
 
         List<Users> users = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
             users.add(user.toDomainModel());
         });
 
-        return users;
+        return users;*/
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UsersJpaRepositoryAdapter implements UsersRepositoryPort {
     }
 
     @Override
-    public String login(Map<String, String> requestMap) {
+    public String loginWithUser(Map<String, String> requestMap) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(requestMap.get("usuario"), requestMap.get("password")));

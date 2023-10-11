@@ -45,13 +45,14 @@ public class UsersController {
         return new ResponseEntity<>(actualizarUsers, HttpStatus.CREATED);
     }
     @DeleteMapping("/{usersId}")
-    public void  deletePersons(@PathVariable Long usersId){
+    public ResponseEntity<String>  deletePersons(@PathVariable Long usersId){
         usersService.eliminar(usersId);
+        return new ResponseEntity<>("User deleted", HttpStatus.ACCEPTED);
 
     }
 
     @PostMapping("/login")
     public String login(@RequestBody(required = true) Map<String, String> requestMap){
-        return usersService.login(requestMap);
+        return usersService.loginWithUser(requestMap);
     }
 }

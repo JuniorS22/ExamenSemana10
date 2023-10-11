@@ -41,7 +41,7 @@ public class UsersService implements UsersUseCase {
     }
 
     @Override
-    public String login(Map<String, String> requestMap) {
-        return usersUseCase.login(requestMap);
+    public String loginWithUser(Map<String, String> requestMap) {
+        return usersUseCase.loginWithUser(requestMap);
     }
 }

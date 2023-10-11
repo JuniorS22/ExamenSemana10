@@ -15,5 +15,5 @@ public interface UsersRepositoryPort {
     Users save(Users users);
     Users update(Users users);
     void   delete(Long id);
-    String login(Map<String, String> requestMap);
+    String loginWithUser(Map<String, String> requestMap);
 }

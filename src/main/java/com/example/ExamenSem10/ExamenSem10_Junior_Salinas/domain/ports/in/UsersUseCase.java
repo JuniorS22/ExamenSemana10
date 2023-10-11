@@ -15,5 +15,5 @@ public interface UsersUseCase {
     Users actualizar(Users users);
     void   eliminar(Long id);
 
-    String login(Map<String, String> requestMap);
+    String loginWithUser(Map<String, String> requestMap);
 }

@@ -63,13 +63,12 @@ public class UsersEntity {
                 users.getUsuario(),
                 users.getPaswoord(),
                 users.getEstado(),
-                PersonsEntity.fromDomainModel(users.getPersons()
-                ),
+                users.getPersons(),
                 users.getFechaCrea(),
                 users.getFechaMod(),
                 users.getRole());
     }
     public Users toDomainModel(){
-        return new Users(id,usuario,paswoord,estado,persons.toDomainModel(),fechaCrea,fechaMod,role);
+        return new Users(id,usuario,paswoord,estado,fechaCrea,fechaMod,persons,role);
     }
 }

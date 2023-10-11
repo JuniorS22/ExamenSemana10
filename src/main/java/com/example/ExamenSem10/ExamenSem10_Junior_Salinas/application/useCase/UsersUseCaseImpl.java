@@ -41,7 +41,7 @@ public class UsersUseCaseImpl implements UsersUseCase {
         usersRepositoryPort.delete(id);
     }
     @Override
-    public String login(Map<String, String> requestMap) {
-        return usersRepositoryPort.login(requestMap);
+    public String loginWithUser(Map<String, String> requestMap) {
+        return usersRepositoryPort.loginWithUser(requestMap);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ExamenSem10.ExamenSem10_Junior_Salinas.domain.model;
 
+import com.example.ExamenSem10.ExamenSem10_Junior_Salinas.infraestructure.entity.PersonsEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,19 +29,18 @@ public class Users {
 
     private Date fechaMod;
 
-    private Persons persons;
+    private PersonsEntity persons;
 
     private String role;
 
-    public Users(Long id, String usuario, String paswoord, Integer estado,Persons persons, Date fechaCrea, Date fechaMod, String role ) {
+    public Users(Long id, String usuario, String paswoord, Integer estado, Date fechaCrea, Date fechaMod, PersonsEntity persons, String role) {
         this.id = id;
         this.usuario = usuario;
         this.paswoord = paswoord;
         this.estado = estado;
-        this.persons = persons;
         this.fechaCrea = fechaCrea;
         this.fechaMod = fechaMod;
+        this.persons = persons;
         this.role = role;
-
     }
 }
